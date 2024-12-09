@@ -1,5 +1,5 @@
 
-package com.flagos.order_service;
+package com.food.order_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

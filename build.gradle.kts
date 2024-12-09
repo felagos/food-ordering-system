@@ -8,7 +8,7 @@ subprojects {
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
 
-    group = "com.flagos"
+    group = "com.food"
     version = "0.0.1-SNAPSHOT"
 
     repositories {
