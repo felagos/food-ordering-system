@@ -1,36 +1,35 @@
 plugins {
-	java
-	id("org.springframework.boot") version "3.4.0"
-	id("io.spring.dependency-management") version "1.1.6"
+    id("org.springframework.boot") version "3.4.0" apply false
+    id("io.spring.dependency-management") version "1.1.6" apply false
 }
 
-group = "com.flagos"
-version = "0.0.1-SNAPSHOT"
+subprojects {
+    apply(plugin = "java")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(22)
-	}
-}
+    group = "com.flagos"
+    version = "0.0.1-SNAPSHOT"
 
-configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
-	}
-}
+    repositories {
+        mavenCentral()
+    }
 
-repositories {
-	mavenCentral()
-}
+    dependencies {
+        configurations["implementation"]("org.springframework.boot:spring-boot-starter-web")
+        configurations["compileOnly"]("org.projectlombok:lombok")
+        configurations["annotationProcessor"]("org.projectlombok:lombok")
+        configurations["testImplementation"]("org.springframework.boot:spring-boot-starter-test")
+        configurations["testRuntimeOnly"]("org.junit.platform:junit-platform-launcher")
+    }
 
-dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	compileOnly("org.projectlombok:lombok")
-	annotationProcessor("org.projectlombok:lombok")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-}
+    configure<JavaPluginExtension> {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(22)
+        }
+    }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }

@@ -1,13 +1,13 @@
-package com.flagos.food_ordering_system;
+
+package com.flagos.order_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FoodOrderingSystemApplication {
+public class OrderServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FoodOrderingSystemApplication.class, args);
+		SpringApplication.run(OrderServiceApplication.class, args);
 	}
-
 }
