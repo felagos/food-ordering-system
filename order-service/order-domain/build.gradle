@@ -1,0 +1,17 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+dependencies {
+    implementation project(':common:common-domain')
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
