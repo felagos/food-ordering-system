@@ -30,7 +30,7 @@ public class Order extends AggregateRoot<OrderId> {
         orderStatus = builder.orderStatus;
         failureMessages = builder.failureMessages;
     }
-    
+
     public CustomerId getCustomerId() {
         return customerId;
     }
