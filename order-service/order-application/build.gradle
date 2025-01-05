@@ -14,5 +14,4 @@ jar {
 
 dependencies {
     implementation project(':order-service:order-domain')
-    // Add other dependencies as needed
 }
