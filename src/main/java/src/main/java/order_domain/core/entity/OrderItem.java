@@ -1,9 +1,10 @@
-package entity;
+package order_domain.core.entity;
 
-import com.food.ordering.system.domain.entity.BaseEntity;
-import com.food.ordering.system.domain.valueobject.Money;
-import com.food.ordering.system.domain.valueobject.OrderId;
-import valueobject.OrderItemId;
+
+import common.domain.entity.BaseEntity;
+import common.domain.valueobject.Money;
+import common.domain.valueobject.OrderId;
+import order_domain.core.valueobject.OrderItemId;
 
 public class OrderItem extends BaseEntity<OrderItemId> {
 

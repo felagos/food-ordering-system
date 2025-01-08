@@ -1,4 +1,4 @@
-package com.food.ordering.system.domain.events;
+package common.domain.events;
 
 public interface DomainEvent<T> {
 }

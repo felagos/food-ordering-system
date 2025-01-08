@@ -1,4 +1,4 @@
-package valueobject;
+package order_domain.core.valueobject;
 
 import java.util.Objects;
 import java.util.UUID;

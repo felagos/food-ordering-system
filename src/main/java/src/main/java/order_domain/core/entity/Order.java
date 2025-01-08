@@ -1,9 +1,10 @@
-package entity;
+package order_domain.core.entity;
 
-import com.food.ordering.system.domain.entity.AggregateRoot;
-import com.food.ordering.system.domain.valueobject.*;
-import valueobject.StreetAddress;
-import valueobject.TrackingId;
+
+import common.domain.entity.AggregateRoot;
+import common.domain.valueobject.*;
+import order_domain.core.valueobject.StreetAddress;
+import order_domain.core.valueobject.TrackingId;
 
 import java.util.List;
 

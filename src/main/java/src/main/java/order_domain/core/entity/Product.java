@@ -1,4 +1,4 @@
-package entity;
+package order_domain.core.entity;
 
 import com.food.ordering.system.domain.entity.BaseEntity;
 import com.food.ordering.system.domain.valueobject.Money;
