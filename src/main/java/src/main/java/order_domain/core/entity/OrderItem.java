@@ -1,10 +1,9 @@
-package order_domain.core.entity;
-
+package src.main.java.order_domain.core.entity;
 
 import common.domain.entity.BaseEntity;
-import common.domain.valueobject.Money;
-import common.domain.valueobject.OrderId;
-import order_domain.core.valueobject.OrderItemId;
+import src.main.java.common.domain.valueobject.Money;
+import src.main.java.common.domain.valueobject.OrderId;
+import src.main.java.order_domain.core.valueobject.OrderItemId;
 
 public class OrderItem extends BaseEntity<OrderItemId> {
 

@@ -1,4 +1,4 @@
-package common.domain.valueobject;
+package src.main.java.common.domain.valueobject;
 
 import java.util.Objects;
 

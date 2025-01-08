@@ -1,10 +1,10 @@
-package order_domain.core.entity;
+package src.main.java.order_domain.core.entity;
 
-import com.food.ordering.system.domain.entity.BaseEntity;
-import com.food.ordering.system.domain.valueobject.Money;
-import com.food.ordering.system.domain.valueobject.ProductId;
 
-public class Product extends BaseEntity<ProductId> {
+import src.main.java.common.domain.valueobject.Money;
+import src.main.java.common.domain.valueobject.ProductId;
+
+public class Product extends common.domain.entity.BaseEntity<ProductId> {
 
     private String name;
     private Money price;

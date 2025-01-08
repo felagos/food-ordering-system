@@ -1,6 +1,6 @@
-package order_domain.core.valueobject;
+package src.main.java.order_domain.core.valueobject;
 
-import com.food.ordering.system.domain.valueobject.BaseId;
+import src.main.java.common.domain.valueobject.BaseId;
 
 public class OrderItemId extends BaseId<Long> {
 

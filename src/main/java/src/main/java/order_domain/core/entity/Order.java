@@ -1,10 +1,10 @@
-package order_domain.core.entity;
+package src.main.java.order_domain.core.entity;
 
 
 import common.domain.entity.AggregateRoot;
-import common.domain.valueobject.*;
 import order_domain.core.valueobject.StreetAddress;
 import order_domain.core.valueobject.TrackingId;
+import src.main.java.common.domain.valueobject.*;
 
 import java.util.List;
 

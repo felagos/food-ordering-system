@@ -12,30 +12,6 @@ repositories {
     mavenCentral()
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ['common/src/main/java',
-                      'order-service/src/main/java',
-                      'payment-service/src/main/java',
-                      'restaurant-service/src/main/java']
-        }
-        resources {
-            srcDirs = ['common/src/main/resources',
-                      'order-service/src/main/resources',
-                      'payment-service/src/main/resources',
-                      'restaurant-service/src/main/resources']
-        }
-    }
-    test {
-        java {
-            srcDirs = ['common/src/test/java',
-                      'order-service/src/test/java',
-                      'payment-service/src/test/java',
-                      'restaurant-service/src/test/java']
-        }
-    }
-}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
