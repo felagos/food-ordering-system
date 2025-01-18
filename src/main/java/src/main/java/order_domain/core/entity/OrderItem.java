@@ -1,6 +1,6 @@
 package src.main.java.order_domain.core.entity;
 
-import common.domain.entity.BaseEntity;
+import src.main.java.common.domain.entity.BaseEntity;
 import src.main.java.common.domain.valueobject.Money;
 import src.main.java.common.domain.valueobject.OrderId;
 import src.main.java.order_domain.core.valueobject.OrderItemId;

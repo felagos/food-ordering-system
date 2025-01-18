@@ -1,4 +1,4 @@
-package common.domain.entity;
+package src.main.java.common.domain.entity;
 
 import java.util.Objects;
 
