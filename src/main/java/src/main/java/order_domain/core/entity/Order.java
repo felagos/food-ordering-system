@@ -2,10 +2,13 @@ package src.main.java.order_domain.core.entity;
 
 import src.main.java.common.domain.entity.AggregateRoot;
 import src.main.java.common.domain.valueobject.*;
+import src.main.java.order_domain.core.exception.OrderDomainException;
+import src.main.java.order_domain.core.valueobject.OrderItemId;
 import src.main.java.order_domain.core.valueobject.StreetAddress;
 import src.main.java.order_domain.core.valueobject.TrackingId;
 
 import java.util.List;
+import java.util.UUID;
 
 public class Order extends AggregateRoot<OrderId> {
 
@@ -18,6 +21,102 @@ public class Order extends AggregateRoot<OrderId> {
     private TrackingId trackingId;
     private OrderStatus orderStatus;
     private List<String> failureMessages;
+
+    public void initializer() {
+        var orderId = new OrderId(UUID.randomUUID());
+        var trackingId = new TrackingId(UUID.randomUUID());
+
+        setId(orderId);
+        this.trackingId = trackingId;
+        this.orderStatus = OrderStatus.PENDING;
+        this.initializeOrder();
+    }
+
+    private void initializeOrder() {
+        long itemId = 1;
+        for (OrderItem orderItem : orderItems) {
+            orderItem.initializeOrderItem(super.getId(), new OrderItemId(itemId));
+            itemId++;
+        }
+    }
+
+    public void validateOrder() {
+        validateInitialOrder();
+        validateTotalPrice();
+        validateItemsPrice();
+    }
+
+    private void validateItemsPrice() {
+        if(this.orderStatus != null || getId() != null) {
+            throw new OrderDomainException("Order is not correct state for initialization");
+        }
+    }
+
+    private void validateTotalPrice() {
+        if(price == null || price.isGreaterThanZero()) {
+            throw new OrderDomainException("Order total price is not correct");
+        }
+    }
+
+    private void validateInitialOrder() {
+        var orderTotal = this.orderItems.stream().map(orderItem -> {
+            validateItemPrice(orderItem);
+            return orderItem.getSubTotal();
+        }).reduce(Money.ZERO, (acc, el) -> {
+            return acc.add(el);
+        });
+
+        if(price.equals(orderTotal)) {
+            throw new OrderDomainException("Total price " + price.getAmount() + " is not equal to sum of items price " + orderTotal.getAmount());
+        }
+    }
+
+    private void validateItemPrice(OrderItem orderItem) {
+        if(!orderItem.isPriceValid()) {
+            throw new OrderDomainException("Order item price is not correct");
+        }
+    }
+
+    public void pay() {
+        if(orderStatus != OrderStatus.PENDING) {
+            throw new OrderDomainException("Order is not in correct state for payment");
+        }
+        orderStatus = OrderStatus.PAID;
+    }
+
+    public void approve() {
+        if(orderStatus != OrderStatus.PAID) {
+            throw new OrderDomainException("Order is not in correct state for approval");
+        }
+        orderStatus = OrderStatus.APPROVED;
+    }
+
+    public void initCancel(List<String> failureMessages) {
+        if(orderStatus != OrderStatus.PAID) {
+            throw new OrderDomainException("Order is not in correct state for cancellation");
+        }
+        orderStatus = OrderStatus.CANCELLING;
+        updateFailureMessages(failureMessages);
+    }
+
+    public void cancel(List<String> failureMessages) {
+        if(!(orderStatus == OrderStatus.CANCELLING || orderStatus == OrderStatus.PENDING)) {
+            throw new OrderDomainException("Order is not in correct state for cancellation");
+        }
+        orderStatus = OrderStatus.CANCELLED;
+        updateFailureMessages(failureMessages);
+    }
+
+    private void updateFailureMessages(List<String> failureMessages) {
+        if(this.failureMessages != null && failureMessages != null) {
+            var updatedList = failureMessages.stream().filter(el -> !el.isEmpty()).toList();
+            this.failureMessages.addAll(updatedList);
+        }
+        if(this.failureMessages == null) {
+            this.failureMessages = failureMessages;
+        }
+    }
+
 
     private Order(Builder builder) {
         super.setId(builder.orderId);

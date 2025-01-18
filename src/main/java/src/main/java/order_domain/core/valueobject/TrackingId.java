@@ -2,9 +2,11 @@ package src.main.java.order_domain.core.valueobject;
 
 import src.main.java.common.domain.valueobject.BaseId;
 
-public class TrackingId extends BaseId<Long> {
+import java.util.UUID;
 
-    public TrackingId(Long id) {
+public class TrackingId extends BaseId<UUID> {
+
+    public TrackingId(UUID id) {
         super(id);
     }
 
