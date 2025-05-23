@@ -10,7 +10,7 @@ import src.main.java.order_domain.core.event.OrderPaidEvent;
 
 public interface OrderDomainService {
 
-    OrderCreateEvent validateAndInitiateOrder(Order order, Restaurant Restaurant);
+    OrderCreateEvent validateAndInitiateOrder(Order order, Restaurant restaurant);
 
     OrderPaidEvent payOrder(Order order);
 
